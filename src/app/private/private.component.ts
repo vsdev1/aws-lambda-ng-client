@@ -13,7 +13,9 @@ export class PrivateComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.authService.checkCredentials();
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['login']);
+    }
   }
 
   logout() {
